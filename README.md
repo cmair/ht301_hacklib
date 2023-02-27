@@ -1,6 +1,8 @@
 # ht301_hacklib
 ht-301 thermal camera opencv python lib.
 
+This fork is a hack to support InfiRay T2S+!
+
 Supported thermal cameras:
 - Hti HT-301
 - Xtherm T3S, thanks to Angel-1024!
