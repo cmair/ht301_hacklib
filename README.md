@@ -2,6 +2,7 @@
 ht-301 thermal camera opencv python lib.
 
 This fork is a hack to support InfiRay T2S+!
+Note: measuring higher temperatures than +116°C does not work!
 
 Supported thermal cameras:
 - Hti HT-301
