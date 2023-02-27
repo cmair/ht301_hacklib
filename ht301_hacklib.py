@@ -164,7 +164,7 @@ def temperatureLut(fpatmp_, meta3):
 
 def info(meta, device_strings, width, height):
 
-    meta0, meta3 = meta[0], meta[3]
+    meta0, meta3 = meta[0], meta[1]
 
     Tfpa_raw = meta0[1]
     fpatmp_ = 20.0 - (float(Tfpa_raw) - 7800.0) / 36.0;
@@ -227,9 +227,10 @@ def findString(m3chr, idx):
     return ends+1, ''.join(chr(x) for x in m3chr[idx:ends])
 
 def device_info(meta):
-    meta3 = meta[3]
+    meta3 = meta[2]
     m3chr = list(meta3.view(dtype=np.dtype(np.uint8)))
-    idx = 48
+#    idx = 48
+    idx = 0
     device_strings = []
     for i in range(6):
         idx, s = findString(m3chr, idx)
@@ -240,8 +241,8 @@ def device_info(meta):
 
 
 class HT301:
-    FRAME_RAW_WIDTH = 384
-    FRAME_RAW_HEIGHT = 292
+    FRAME_RAW_WIDTH = 256
+    FRAME_RAW_HEIGHT = 196
     FRAME_WIDTH = FRAME_RAW_WIDTH
     FRAME_HEIGHT = FRAME_RAW_HEIGHT - 4
 
@@ -313,6 +314,7 @@ class HT301:
             if device_strings[3] == 'T3-317-13': frame_ok = True
             elif device_strings[4] == 'T3-317-13': frame_ok = True
             elif device_strings[5] == 'T3S-A13': frame_ok = True
+            elif device_strings[1] == 'T2S+': frame_ok = True
             else:
                 if debug > 0: print('frame meta no match:', device_strings)
                 if self.frame_raw != None:
